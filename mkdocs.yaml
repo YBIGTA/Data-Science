@@ -1,0 +1,19 @@
+site_name: YBIGTA Data Science
+theme: readthedocs
+docs_dir: docs
+repo_url: http://github.com/YBIGTA/Data-Science
+site_url: http://ybigta-data-science.readthedocs.io
+
+markdown_extensions:
+    - mdx_math
+    - fenced_code
+
+extra_javascript: 
+    - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+pages:
+    - Home: index.md
+    - Overview: overview.md
+    - 01 Statistical Machine Learning Study:
+    - 02 Deep Learning Study:
+
