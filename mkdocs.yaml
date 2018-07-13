@@ -14,6 +14,14 @@ extra_javascript:
 pages:
     - Home: index.md
     - Overview: overview.md
-    - 01 Statistical Machine Learning Study:
-    - 02 Deep Learning Study:
-
+    - 1 Introduction to Deep Learning: 
+    - 2 Deep Vision Study:
+    - 3 Deep Learning Book Study:
+        - 01 Introduction: 3/introduction.md
+        - 02 Linear Algebra: 
+        - 03 Probability and Information Theory: 
+        - 04 Numeric Computation: 
+        - 05 Machine Learning Basics: 
+        - 06 Deep Feedfoward Networks: 
+        - 07 Regularization for Deep Learning: 
+    - 4 ISLR Book Study:
