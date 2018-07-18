@@ -17,7 +17,7 @@ pages:
 #    - 1 Introduction to Deep Learning: 
 #    - 2 Deep Vision Study:
     - 3 Deep Learning Book Study:
-        - 01 Introduction: 3_Deep_Learning_Book/3_Deep_Learning_Book/introduction.md
+        - 01 Introduction: 3_Deep_Learning_Book/introduction.md
 #        - 02 Linear Algebra: 
 #        - 03 Probability and Information Theory: 
 #        - 04 Numeric Computation: 
@@ -26,4 +26,4 @@ pages:
 #        - 07 Regularization for Deep Learning: 
 #    - 4 ISLR Book Study:
     - 6 Data Science from Scratch Study:
-        - 01 Introduction: 6_Data_Science_from_Scratch/6_Data_Science_from_Scratch/Introduction.md
+        - 01 Introduction: 6_Data_Science_from_Scratch/Introduction.md
