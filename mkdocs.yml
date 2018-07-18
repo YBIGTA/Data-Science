@@ -5,19 +5,19 @@ repo_url: http://github.com/YBIGTA/Data-Science
 site_url: http://ybigta-data-science.readthedocs.io
 
 markdown_extensions:
-    - mdx_math
+    #- mdx_math
     - fenced_code
 
 extra_javascript: 
     - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
-#pages:
-#    - Home: index.md
-#    - Overview: overview.md
+pages:
+    - Home: index.md
+    - Overview: overview.md
 #    - 1 Introduction to Deep Learning: 
 #    - 2 Deep Vision Study:
-#    - 3 Deep Learning Book Study:
-#        - 01 Introduction: 3_Deep_Learning_Book/introduction.md
+    - 3 Deep Learning Book Study:
+        - 01 Introduction: 3_Deep_Learning_Book/introduction.md
 #        - 02 Linear Algebra: 
 #        - 03 Probability and Information Theory: 
 #        - 04 Numeric Computation: 
@@ -25,5 +25,5 @@ extra_javascript:
 #        - 06 Deep Feedfoward Networks: 
 #        - 07 Regularization for Deep Learning: 
 #    - 4 ISLR Book Study:
-#    - 6 Data Science from Scratch Study:
-#        - 01 Introduction: 6_Data_Science_from_Scratch/Introduction.md
+    - 6 Data Science from Scratch Study:
+        - 01 Introduction: 6_Data_Science_from_Scratch/Introduction.md
