@@ -357,7 +357,7 @@ ggplot(example)+
   theme(plot.title=element_text(face='bold'))
 ```
 
-![](ISL_CH2_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](./unnamed-chunk-5-1.png)
 
 이렇게 셋팅을 하고 **sample size**가 **100**인 **1000** (simulation 횟수) 개의 train set ![D](https://latex.codecogs.com/png.latex?D "D")를 generate 했으며 각각의 데이터셋 ![D\_1](https://latex.codecogs.com/png.latex?D_1 "D_1"),![D\_2](https://latex.codecogs.com/png.latex?D_2 "D_2"),...![D\_{1000}](https://latex.codecogs.com/png.latex?D_%7B1000%7D "D_{1000}") 에 대해 1, 3, 6, 12로 차수를 늘려가며 4개의 다항회귀모형을 적합하였고,
 
