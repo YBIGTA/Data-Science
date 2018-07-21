@@ -1,4 +1,4 @@
-# 02 Statistical Learning
+## 02 Statistical Learning
 
 ------------------------------------------------------------------------
 
@@ -361,7 +361,7 @@ ggplot(example)+
 
 이렇게 셋팅을 하고 **sample size**가 **100**인 **1000** (simulation 횟수) 개의 train set ![D](https://latex.codecogs.com/png.latex?D "D")를 generate 했으며 각각의 데이터셋 ![D\_1](https://latex.codecogs.com/png.latex?D_1 "D_1"),![D\_2](https://latex.codecogs.com/png.latex?D_2 "D_2"),...![D\_{1000}](https://latex.codecogs.com/png.latex?D_%7B1000%7D "D_{1000}") 에 대해 1, 3, 6, 12로 차수를 늘려가며 4개의 다항회귀모형을 적합하였고,
 
-Test MSE의 계산을 위한 new observation (![x\_0](https://latex.codecogs.com/png.latex?x_0 "x_0"), ![y\_0](https://latex.codecogs.com/png.latex?y_0 "y_0")) (![(8,f(8))](https://latex.codecogs.com/png.latex?%288%2Cf%288%29%29 "(8,f(8))")) 를 정의하였으며 예측치들을 `predictions` 이라는 행렬로 저장하였다.
+Bias 와 Variance의 추정치를 계산하고 비교를 위해 new observation을 (![x\_0](https://latex.codecogs.com/png.latex?x_0 "x_0"), ![y\_0](https://latex.codecogs.com/png.latex?y_0 "y_0")) (![(8,f(8)+\\epsilon)](https://latex.codecogs.com/png.latex?%288%2Cf%288%29%2B%5Cepsilon%29 "(8,f(8)+\epsilon)")) 를 정의하였으며 예측치들을 `predictions` 이라는 행렬로 저장하였다.
 
 ``` r
 ## number of simulations
@@ -369,9 +369,6 @@ n_sim = 1000
 ## number of models
 n_model = 4
 degrees=c(1,3,6,12)
-
-## define test set
-new_data=data.frame(x=8,y=f(8))
 
 
 ## predictions
@@ -417,12 +414,14 @@ grid.arrange(plot1,plot3,plot6,plot12,
 ## Bias - Variance Trade-Off Simulation 
 options(scipen=999)
 set.seed(2013122044)
-
+y=c()
 ## 1000 simulations
 for (sim in 1:n_sim){
   
   ## generate dataset with sample size 100
   sim_data=get_sim(f,100)
+  new_data=data.frame(x=8,y=f(8)+rnorm(1,0,5))
+  y=append(y,new_data$y)
   
   ## model fitting and predictions
   for (j in 1:length(degrees)){
@@ -458,11 +457,10 @@ ggplot(data =melt(predictions),aes(x=variable, y=value))+
 
 ``` r
 ## Test MSE
-test_mse=apply(predictions,2,mse,test=f(8))
+test_mse=apply(predictions,2,mse,test=y)
 
 ## Bias^2
 bias_squared=(apply(predictions,2,bias,test=f(8)))^2
-
 ## Variance
 var=apply(predictions,2,variance,test=f(8))
 
@@ -471,18 +469,18 @@ results=data.frame('Test MSE'=test_mse,'Bias Squared'=bias_squared,'Variance'=va
 kable(results,format='markdown') 
 ```
 
-|      |   Test.MSE|  Bias.Squared|   Variance|
-|:-----|----------:|-------------:|----------:|
-| 1th  |  7.9000519|     7.1575396|  0.7425123|
-| 3th  |  0.7576468|     0.0017169|  0.7559299|
-| 6th  |  1.3258296|     0.0003601|  1.3254694|
-| 12th |  2.9330009|     0.0000029|  2.9329980|
+|      |  Test.MSE|  Bias.Squared|   Variance|
+|:-----|---------:|-------------:|----------:|
+| 1th  |  32.09436|     6.9552496|  0.6985917|
+| 3th  |  25.39866|     0.0014614|  0.7204642|
+| 6th  |  26.03019|     0.0011937|  1.3122572|
+| 12th |  27.99150|     0.0047051|  3.0742542|
 
 3차 다항회귀를 적합했을때, 우리가 알고있다고 가정한 true function ![f](https://latex.codecogs.com/png.latex?f "f") 가 3차함수였으므로 Test MSE가 가장 작다고 유추할 수 있다.
 
-**Note :** 정의한 함수로 계산되는 Test MSE를 보면 정확히 Bias의 제곱과 Variance의 합임을 알 수 있다.
+**Note :** 정의한 함수로 계산되는 Test MSE를 보면 정확히 Bias의 제곱과 Variance의 합이 아님을 알 수 있다.
 
-정의대로면 추가적으로 ![Var(\\epsilon)](https://latex.codecogs.com/png.latex?Var%28%5Cepsilon%29 "Var(\epsilon)") 이 고려되어야 하지만 이는 우리가 시뮬레이션을 위해 new observation ![y\_0](https://latex.codecogs.com/png.latex?y_0 "y_0") 값을 안다고 가정했기 때문에 아직 관측되지 않은 ![y\_0](https://latex.codecogs.com/png.latex?y_0 "y_0") 값 자체가 가지는 irreducible error (![\\epsilon](https://latex.codecogs.com/png.latex?%5Cepsilon "\epsilon"))을 고려하지 않았기 때문이다.
+정의대로면 추가적으로 ![Var(\\epsilon)~\\approx25](https://latex.codecogs.com/png.latex?Var%28%5Cepsilon%29~%5Capprox25 "Var(\epsilon)~\approx25") 가 고려되어야 하기 때문이다.
 
 ------------------------------------------------------------------------
 
