@@ -24,4 +24,4 @@ Using Dataset
 
 
 - Error of paper
-* 224x224 is actually 227x227
+ : 224x224 is actually 227x227
