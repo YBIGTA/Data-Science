@@ -1,4 +1,4 @@
-## 02 Statistical Learning
+# 02 Statistical Learning
 
 ------------------------------------------------------------------------
 
@@ -309,7 +309,7 @@ variance=function(pred,test){
 
 ![y=0.15~(x-5)^3+\\epsilon,~~(\\epsilon\\sim~N(0,5^2) )~~(0&lt;=x&lt;=10)](https://latex.codecogs.com/png.latex?y%3D0.15~%28x-5%29%5E3%2B%5Cepsilon%2C~~%28%5Cepsilon%5Csim~N%280%2C5%5E2%29%20%29~~%280%3C%3Dx%3C%3D10%29 "y=0.15~(x-5)^3+\epsilon,~~(\epsilon\sim~N(0,5^2) )~~(0<=x<=10)")
 
- test observation ![(x\_0,y\_0)](https://latex.codecogs.com/png.latex?%28x_0%2Cy_0%29 "(x_0,y_0)")을 ![(8,f(8))](https://latex.codecogs.com/png.latex?%288%2Cf%288%29%29 "(8,f(8))")으로 설정하여
+ test observation ![(x\_0,y\_0)](https://latex.codecogs.com/png.latex?%28x_0%2Cy_0%29 "(x_0,y_0)") 을 ![(8,f(8)+\\epsilon)](https://latex.codecogs.com/png.latex?%288%2Cf%288%29%2B%5Cepsilon%29 "(8,f(8)+\epsilon)") 으로 설정하여
 
 ![(x\_0,y\_0)](https://latex.codecogs.com/png.latex?%28x_0%2Cy_0%29 "(x_0,y_0)") 을 제외한 모든 구간에서 train sample을 추출하는 `get_sim` 함수를 정의한다.
 
@@ -357,7 +357,7 @@ ggplot(example)+
   theme(plot.title=element_text(face='bold'))
 ```
 
-![](./unnamed-chunk-5-1.png)
+![](ISL_CH2_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 이렇게 셋팅을 하고 **sample size**가 **100**인 **1000** (simulation 횟수) 개의 train set ![D](https://latex.codecogs.com/png.latex?D "D")를 generate 했으며 각각의 데이터셋 ![D\_1](https://latex.codecogs.com/png.latex?D_1 "D_1"),![D\_2](https://latex.codecogs.com/png.latex?D_2 "D_2"),...![D\_{1000}](https://latex.codecogs.com/png.latex?D_%7B1000%7D "D_{1000}") 에 대해 1, 3, 6, 12로 차수를 늘려가며 4개의 다항회귀모형을 적합하였고,
 
