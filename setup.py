@@ -19,5 +19,6 @@ setup(name='python-markdown-math',
       author_email='mitya57@gmail.com',
       version='0.2',
       url='https://github.com/mitya57/python-markdown-math',
+      enable_dollar_delimiter=True,
       py_modules=['mdx_math'],
       license='BSD')
