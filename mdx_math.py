@@ -13,7 +13,7 @@ from markdown.util import AtomicString, etree
 class MathExtension(markdown.extensions.Extension):
     def __init__(self, *args, **kwargs):
         self.config = {
-            'enable_dollar_delimiter': [False, 'Enable single-dollar delimiter'],
+            'enable_dollar_delimiter': [True, 'Enable single-dollar delimiter'],
             'add_preview': [False, 'Add a preview node before each math node'],
         }
         super(MathExtension, self).__init__(*args, **kwargs)
