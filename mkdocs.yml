@@ -10,7 +10,6 @@ markdown_extensions:
   - iconfonts:
       base: "fa"
       prefix: "fa-"
-  - mathjax
   - codehilite
 
 extra_javascript: 
