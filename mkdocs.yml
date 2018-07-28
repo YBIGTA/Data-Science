@@ -6,11 +6,6 @@ site_url: http://ybigta-data-science.readthedocs.io
 
 markdown_extensions:
   - extra
-  - admonition
-  - iconfonts:
-      base: "fa"
-      prefix: "fa-"
-  - codehilite
 
 extra_javascript: 
     - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
