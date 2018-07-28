@@ -5,8 +5,12 @@ repo_url: http://github.com/YBIGTA/Data-Science
 site_url: http://ybigta-data-science.readthedocs.io
 
 markdown_extensions:
-    #- mdx_math
-    - fenced_code
+  - extra
+  - admonition
+  - iconfonts:
+      base: "fa"
+      prefix: "fa-"
+  - codehilite
 
 extra_javascript: 
     - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
