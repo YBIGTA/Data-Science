@@ -72,6 +72,8 @@ Mean-zero random error term이 존재하기 때문에(2장 참조), Y와 X간에
 
 \\(p-value\\)를 이용하여 이를 해석한다. \\(p-value\\)가 낮으면 \\({ H }_{ 0 }\\)를 기각하고, 해당 계수는 유의미하다고 판단한다. (아래 테이블 참조)
 
+![photo](images/table 3.1.JPG)
+
 ## 3.1.3 Assessing the Accuracy of the Model
 
 #### RSE 
@@ -119,7 +121,9 @@ RSE는 \\(Y\\)의 크기(단위)에 따라 크고 작음이 결정 될 수 있�
 
 아래의 correlation matrix를 보자.
 
--- 이해가 가지 않는 부분 --
+![photo](images/correlation.JPG)
+
+radio 변수와 newspaper 변수는 상관계수가 높다. simple linear regression의 경우 변수들 간의 상관관계가 고려가 되지 않지만, multiple linear regression은 변수들 간의 상관관계가 고려가 되어 계수가 조정된 것으로 설명할 수 있다.
 
 ## 3.2.2 Some Important Questions
 
@@ -246,6 +250,4 @@ linear regression은 좋은 모델이지만, 두 가지의 중요한 가정이 �
 그림에서 보듯이 non-linear한 데이터에 대해서는 높은 차수의 변수를 사용 할 수 있지만, 지나치게 높은 차수의 변수를 사용하면 지나치게 휘어, 데이터에 더 적합하지 않을 수 있다.
 
 이처럼 \\(interaction term\\)과 \\(polynomial regression\\)를 이용하면, linear regression 모델을 더 확장시킬 수 있다. 하지만, inference는 더 떨어지는 모델이기 때문에 사용시에 주의해야 한다. linear regression 모델은 inference에 더 적합하기 때문이다.
-
-## 3.3.3 Potential Problems
 
