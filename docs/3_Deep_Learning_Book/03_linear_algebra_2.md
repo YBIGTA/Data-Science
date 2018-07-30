@@ -1,8 +1,8 @@
 ## Eigendecomposition
 
-### Diagonalization: $D=V^{-1}AV$  ($\equiv A=VDV^-1$)
+### Diagonalization: \(D=V^{-1}AV\)  (\( \equiv A=VDV^-1 \))
 #### Notation
-$A\in R^{n\times n}$: 정사각행렬
+\( A\in R^{n\times n} \) : 정사각행렬
 
 $D\in R^{n\times n}$: 대각행렬 (대각성분을 제외한 모든 값이 0인 행렬)
 
