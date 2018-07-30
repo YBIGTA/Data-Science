@@ -13,7 +13,7 @@ from markdown.util import AtomicString, etree
 class MathExtension(markdown.extensions.Extension):
     def __init__(self, *args, **kwargs):
         self.config = {
-            'enable_dollar_delimiter': [True, 'Enable single-dollar delimiter'],
+            'enable_dollar_delimiter': [False, 'Enable single-dollar delimiter'],
             'add_preview': [False, 'Add a preview node before each math node'],
         }
         super(MathExtension, self).__init__(*args, **kwargs)
@@ -46,15 +46,16 @@ class MathExtension(markdown.extensions.Extension):
 
         inlinemathpatterns = (
             markdown.inlinepatterns.Pattern(r'(?<!\\|\$)(\$)([^\$]+)(\$)'),  #  $...$
-          #  markdown.inlinepatterns.Pattern(r'(?<!\\)(\\\()(.+?)(\\\))')     # \(...\)
+            markdown.inlinepatterns.Pattern(r'(?<!\\)(\\\()(.+?)(\\\))')     # \(...\)
         )
         mathpatterns = (
             markdown.inlinepatterns.Pattern(r'(?<!\\)(\$\$)([^\$]+)(\$\$)'), # $$...$$
-         #   markdown.inlinepatterns.Pattern(r'(?<!\\)(\\\[)(.+?)(\\\])'),    # \[...\]
+            markdown.inlinepatterns.Pattern(r'(?<!\\)(\\\[)(.+?)(\\\])'),    # \[...\]
             markdown.inlinepatterns.Pattern(r'(?<!\\)(\\begin{([a-z]+?\*?)})(.+?)(\\end{\3})')
         )
         if not self.getConfig('enable_dollar_delimiter'):
-            inlinemathpatterns = inlinemathpatterns[1:]
+            #inlinemathpatterns = inlinemathpatterns[1:]
+            pass
         for i, pattern in enumerate(inlinemathpatterns):
             pattern.handleMatch = handle_match_inline
             md.inlinePatterns.add('math-inline-%d' % i, pattern, '<escape')
