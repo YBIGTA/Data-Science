@@ -1,5 +1,6 @@
 ## Deep L-layer neural network
 ![image](./week4/1.jpg)
+
 deep neural network가 무엇인지는 위의 그림을 통해 설명할 수 있다. 좌측 상단은 로지스틱 회귀를 신경망으로 표현한 것이고, 이외는 레이어의 수에 따라 신경망을 대략적으로 묘사한 것이다. 로지스틱 회귀는 shallow한 모델이며 반면 우측 하단의 5 layer 모델은 deep한 모델이라고 표현된다. 즉, hidden layer의 개수에 따라서 depth가 결정되는 것일 뿐이다.
 
 ## Forward Propagation in a Deep Network
