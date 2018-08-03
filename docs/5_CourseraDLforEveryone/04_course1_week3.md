@@ -1,10 +1,12 @@
 ## Neural Network Representation
 이제부터 다룰 neural network의 기본적인 구조는 다음과 같다..
 ![image](./week3/1.png)
+
 다음의 그림에서 각 열을 레이어라고 부르며 구체적으로,
-* $x1, x2, x3$ : input layer
-* 중간 레이어 : hidden layer, 각각은 hidden unit에 해당.
-* $\hat{y}$ : output layer
+
+- $x1, x2, x3$ : input layer
+- 중간 레이어 : hidden layer, 각각은 hidden unit에 해당.
+- $\hat{y}$ : output layer
 
 라고 부른다. 또한 위의 그림과 같은 경우를 2 layer neural network라고 부르는데, 일반적으로 input layer는 layer의 수에 포함시키지 않기 때문이다.
 
@@ -26,6 +28,7 @@ $a^\text{[1]}$는 다시 output layer의 입력값이 되며, output layer에서
 이제 하나의 unit 별로 어떠한 연산이 이루어지는지를 알아보자! 다음의 예시는 hidden layer에 하나의 unit만이 존재하는 경우 어떻게 결과값을 산출하는지를 나타내는 그래프이다.
 
 ![image](./week3/2.png)
+
 입력값 $x$는 $z = W^{\rm T}x + b$를 거쳐 최종적으로 $ a = \sigma{(z)} = \hat{y}$를 산출한다.
 
 위에서 살펴본 2 layer neural network의 hidden layer의 경우 이를 여러 unit으로 확장한 것에 불과하므로, 다음과 같은 식을 통해 $z_n^{[1]}$와 $a_n^{[1]}$를 산출한다.
@@ -55,17 +58,17 @@ a^{[2](i)} = \sigma{(z^{[2](i)})}$$
 지금까지 다루어왔던 예제에서 회귀를 통해 예측된 $z$는 activation function(활성함수)을 통해 변환된다. 이전의 강의에서는 이 activation function으로 시그모이드 함수를 사용해 왔다. 이번 강의에서는 여러 activation function을 소개하고 있다.
 
 (1) tanh
-- -1과 +1 사이의 값을 가짐
-- 데이터를 centering하는 역할을 수행함으로써 데이터들의 평균이 0에 근접하도록 한다. 이 경우 다음 레이어에서의 학습이 보다 수월하게 이루어질 수 있다.
+  - -1과 +1 사이의 값을 가짐
+  - 데이터를 centering하는 역할을 수행함으로써 데이터들의 평균이 0에 근접하도록 한다. 이 경우 다음 레이어에서의 학습이 보다 수월하게 이루어질 수 있다.
 
 (2) RELU
-- z값이 너무 크거나 너무 작으면 시그모이드와 tanh의 값이 1과 -1에 가까워질 수 있다. 즉 기울기가 0에 가까워지며, gradient descent가 느려질 수 있다. 이 단점을 보완하는 활성함수
-- z과 0보다 작으면 0으로 만들지만, 그렇지 않으면 계속 증가함( = $max(0, z)$)
-- 기울기가 0에 가까워지지 않고 z에 따라 달라지기 때문에, tanh에 비해 학습이 빠르다.
+  - z값이 너무 크거나 너무 작으면 시그모이드와 tanh의 값이 1과 -1에 가까워질 수 있다. 즉 기울기가 0에 가까워지며, gradient descent가 느려질 수 있다. 이 단점을 보완하는 활성함수
+  - z과 0보다 작으면 0으로 만들지만, 그렇지 않으면 계속 증가함( = $max(0, z)$)
+  - 기울기가 0에 가까워지지 않고 z에 따라 달라지기 때문에, tanh에 비해 학습이 빠르다.
 
 (3) Leaky ReLU
-- $z$가 양수인 경우에는 ReLU와 동일하지만
-- $z <0$인 경우
+  - $z$가 양수인 경우에는 ReLU와 동일하지만
+  - $z <0$인 경우
 
 강의에서는 결과값이 binary classification인 경우에는 시그모이드 함수를 사용하고, 다른 경우에는 ReLU나 tanh를 사용하라고 권유한다.
 
