@@ -1,0 +1,322 @@
+---
+title: "R Notebook"
+output: 
+  github_document:
+    pandoc_args: --webtex
+---
+
+# 03 Regression
+
+## Chapter 4 Lab: Logistic Regression
+
+```{r}
+library(ISLR)
+names(Smarket)
+head(Smarket)
+attach(Smarket)
+cor(Smarket[,-which(names(Smarket) == 'Direction')])
+```
+
+glm() function 은 로지스틱 회귀를 포함하는 generalized linear models을 적합한다. 로지스틱 회귀 쓰고 싶으면
+family=binomial 이라고 써줘야 한다. 
+```{r}
+glm.fits = glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume,family=binomial, data=Smarket)
+summary(glm.fits)
+```
+
+각각의 계수들과 관련된 p-value 값이 높다. 따라서 해당 계수가 유의미하다고 볼 수 없다.
+```{r}
+summary(glm.fits)$coef
+```
+
+뭔가를 예측하고 싶다면 predict()을 쓰자. 여기서 type='response'를 쓰면 p(y=1 | x)라는 확률을 출력하게 하는 것이다.
+어떠한 데이터 셋이 포함되않는다면 그냥 트레이닝 데이터 셋에 관한 예측을 하는 것이다.
+```{r}
+glm.probs = predict(glm.fits,type='response')
+glm.probs[1:10]
+```
+R이 어떻게 더미화했는지 알아보기 위해서는
+```{r}
+contrasts(Direction)
+```
+
+0.5 이상을 Up이라고 해보자! 왜냐면 저 확률은 pr(y=1 | x)이니까.
+```{r}
+glm.direction = rep('Down',1250)
+glm.direction[glm.probs > 0.5] <- 'Up'
+table(glm.direction,Direction)
+```
+대각 행렬에 있는 애들이 맞게 예측한 것이고 다른애들은 틀리게 예측한 것이다.
+다음은 2001년~2004년 데이터를 통해 2005년을 예측하는 과정이다.
+subset argument을 통해서 train data을 지정할 있다.
+```{r}
+train = Year<2005
+data.test = Smarket[!train,]
+glm.fits = glm(Direction~Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, data=Smarket, family='binomial',subset=train)
+glm.probs = predict(glm.fits,data.test,type='response')
+glm.pred = rep('Down',length(glm.probs))
+glm.pred[glm.probs>0.5] <- 'Up'
+table(glm.pred,Direction[!train])
+```
+test error rate 계산하기
+```{r}
+mean(Direction[!train] != glm.pred)
+```
+
+test error rate가 52%정도 되는 것으로 나타났다. 아마도 쓸모없는 변수를 많이 포함해서 그런 것일수도?
+Lag1와 Lag2만을 포함해서 하면 결과 조금 더 좋게 나타남! 생략.
+
+만약 Lag1과 Lag2의 특정한 값과 관련된 결과를 얻고 싶다면? (Lag1과 Lag2만을 이용해서 모델을 적합한 상황에서)
+
+predict(glm.fits,newdata=data.frame(Lag1=c(1.2,1.5),Lag2=c(1.1,-0.8)),type='response')
+
+
+## Linear Discriminant Analysis
+
+lda function은 MASS library에 들어있다. lda function은 lm과 glm과 동일한 문법 구조임. glm이 family 빼고.
+```{r}
+library(MASS)
+lda.fit = lda(Direction ~ Lag1 + Lag2, data=Smarket, subset=train)
+lda.fit
+```
+
+prior prob of groups는 hat(pi)
+group means는 hat(mu)
+coeff of linear discriminants는 linear combination of Lag1 and Lag2
+
+```{r}
+lda.predict = predict(lda.fit,Smarket[!train,])
+names(lda.predict)
+```
+위의 lda.predict는 list 형태로 반환이 되는데,
+class: up인지 down인지에 대한 lda의 예측 결과를 보여준다.
+posterior: is a matrix whose kth column contains the posterior prob that the corresponding observation belongs
+to the kth class, computed from 4.10 = 사후확률 계산하기!! 거꾸로 계산한 확률값.
+x: 앞서 얘기한 linear discriminant을 뜻한다.
+
+lda는 bayes classifier에 기반하므로 threshold가 0.5이다. 그에 따라서 class가 나온 것인데, 
+posterior prob가 posterior에 담겨져 있으므로 threshold는 얼마든지 바꿀 수 있다.
+예를 들어서 90% 이상인 애들만 up이라고 하고 싶다면
+```{r}
+sum(lda.predict$posterior[,2]>=0.9)
+```
+
+## Quadratic Discriminant Analysis
+
+qda도 MASS library안에 있음.
+```{r}
+qda.fit = qda(Direction~Lag1+Lag2,data=Smarket,subset=train)
+qda.fit
+qda.predict = predict(qda.fit,Smarket[!train,])
+qda.class = qda.predict$class
+table(qda.class,Direction[!train])
+```
+결과로 qda가 잘 맞춘 비율은??
+```{r}
+mean(qda.class == Direction[!train])
+```
+
+## K- Nearest Neighbors
+
+knn()은 class library에 있다. knn func은 한 커맨드로 predictions을 형성한다.
+```{r}
+library(class)
+train.x = cbind(Lag1,Lag2)[train,]
+test.x = cbind(Lag1,Lag2)[!train,]
+train.direction = Direction[train]
+
+```
+
+이렇게 하고나서 knn하기 전에 set.seed()을 꼭 해야한다.말을 그대로 옮겨보면
+if several observations are tied as nearest neighbors, then R will randomly break the tie
+Therefore a seed must be set in order to ensure reproducibility of results.
+```{r}
+set.seed(1)
+knn.pred = knn(train.x,test.x,train.direction,k=1)
+table(knn.pred,Direction[!train])
+```
+
+```{r}
+(43+83)/252
+```
+50%의 정확도!
+k를 늘려보자
+```{r}
+set.seed(1)
+knn.pred = knn(train.x,test.x,train.direction,k=3)
+table(knn.pred,Direction[!train])
+(48+86)/252
+```
+딱히 차이가 안남. 이 데이터에서는 QDA가 가장 좋다!
+
+## An application to caravan insurance data
+
+```{r}
+dim(Caravan)
+attach(Caravan)
+summary(Purchase)
+```
+KNN은 scale에 영향을 많이 받는다. 예를 들어 salary가 1000차이나는 것이랑 years가 50차이나는 것이랑
+salary가 훨씬 더 많은 영향을 준다. 이러한 점을 보완하기 위해서 표준화(standardize)을 진행함!
+```{r}
+stan.x = scale(Caravan[,-which(names(Caravan)=='Purchase')])
+var(stan.x[,1])
+```
+
+이제 처음 4000개 데이터로 training data를 생성하고 나머지로 test를 해보자!
+```{r}
+data.caravan = Caravan[,-86]
+train.x = data.caravan[1:4000,]
+test.x = data.caravan[4001:nrow(Caravan),]
+train.purchase = Purchase[1:4000]
+set.seed(1)
+knn.pred = knn(train.x,test.x,train.purchase,k=3)
+test.y = Purchase[4001:nrow(Caravan)]
+mean(knn.pred != test.y)
+```
+4000개로 training을 시키고 나머지로 test을 하니까 성능이 꽤 좋다!
+
+이제 logistic으로 해보자.
+
+```{r}
+train = 1:4000
+glm.fits = glm(Purchase~.,data=Caravan,family='binomial',subset=train)
+glm.probs = predict(glm.fits,Caravan[4001:nrow(Caravan),],type='response')
+caravan.pred = rep('No',(nrow(Caravan)-4000))
+caravan.pred[glm.probs>0.25] <- 'yes'
+mean(caravan.pred == Purchase[4001:nrow(Caravan)])
+table(caravan.pred,Purchase[4001:nrow(Caravan)])
+10/(46+10)
+```
+
+# Chapter 5 Validation Approach
+
+## The validation set Approach
+
+cross validation 같은 것을 할 때는, 같은 결과를 내기 위해서 set.seed()을 해주는 것이 좋다.
+
+
+
+```{r}
+library(ISLR)
+attach(Auto)
+set.seed(1)
+train = sample(392,196)
+#sample(a,b): sample()의 첫번인자가 숫자 하나라면 1:a까지의 vector중에서 b개를 뽑는다는 뜻. replace는 F가 기본값
+```
+
+
+이제 Auto 데이터에서 training data set에 해당하는 애들만 적합시켜보자
+
+```{r}
+lm.fit = lm(mpg~horsepower,data=Auto,subset=train)
+```
+
+그러고 predict()을 이용해서 나머지 test data set을 예측해보자.
+
+```{r}
+lm.pred = predict(lm.fit,newdata=Auto)
+mean((mpg-lm.pred)[-train]^2)
+```
+
+이제 quadratic 또는 cubic regression으로 적합시켜보자.
+
+```{r}
+lm.fit2 = lm(mpg~poly(horsepower,2),data=Auto,subset=train)
+lm.pred2 = predict(lm.fit2,newdata=Auto)
+mean((mpg - lm.pred2)[-train]^2)
+```
+
+## Leave-one-out cross-validation
+
+LOOCV는 boot library에 있는 cv.glm()을 통해서 한번에 할 수 있다. 따라서 여기서는 lm보다는 glm을 사용한다.
+glm에서 family을 적어주지 않으면 lm과 동일한 성능을 보이니 상관 없다!
+
+```{r}
+library(boot)
+glm.fit = glm(mpg~horsepower,data=Auto)
+cv.err = cv.glm(Auto,glm.fit)
+cv.err$delta
+```
+
+cv.err는 리스트로 반환이 되는데 delta는 5.1의 값을 나타낸다. LOOCV의 test mse 계산한 값
+
+차수를 늘려가며 test mse를 계산해보자.
+
+```{r}
+cv.err = rep(0,5)
+for(i in 1:5){
+  glm.fit = glm(mpg~poly(horsepower,i),data=Auto)
+  cv.err[i] = cv.glm(Auto,glm.fit)$delta[1]
+}
+cv.err
+```
+
+## K-Fold cross-validation
+
+얘는 cv.glm에서 K= 옵션을 넣어서 실행할 수 있다. 여기서 K는 대문자임!!
+
+```{r}
+kfold.err = rep(0,10)
+for(i in 1:10){
+  glm.fit = glm(mpg~poly(horsepower,i),data=Auto)
+  kfold.err[i] = cv.glm(Auto,glm.fit,K=10)$delta[1]
+}
+kfold.err
+```
+
+LOOCV에서는 delta에 있는 첫번째, 두번째 값이 동일했지만 kfold에서는 살짝 다르다.
+첫번째는 5.3에 있는 standard kfold cv estimate이고 두번째는 bias corrected 버전이다.
+
+## The Bootstrap
+
+boot()함수는 boot library에 있다.
+
+아래는 선택된 관측치에 근거해 알파에 대한 추정치를 출력해주는 함수이다.
+```{r}
+alph.fn = function(data,index){
+  X = data$X[index]
+  Y = data$Y[index]
+  return((var(Y)-cov(X,Y))/(var(X)+var(Y)-2*cov(X,Y)))
+}
+
+alph.fn(Portfolio,1:100)
+```
+
+다음은 1에서 100까지 복원추출을 통해 100개의 관츠측치를 선택하기 위해 sample() 함수를 사용했다.
+
+```{r}
+set.seed(1)
+alph.fn(Portfolio,sample(100,100,replace=T))
+```
+
+부트스트랩 과정은 이 커맨드를 여러번 실행함으로써 알파에 대한 estimate을 구하고 걔네들의 SD를 구하는 과정이다.
+하지만 boot()이라는 함수는 이러한 과정을 자동으로 해준다.
+
+```{r}
+boot(Portfolio,alph.fn,R=1000)
+```
+
+결과를 보면 알파 hat이 0.5758이고 알파 hat의 sd가 0.0886이라는 뜻이다.
+
+### linear regression model 정확도 측정하기
+부트스트랩은 계수 측정치의 variability을 평가하는데 사용된다. 회귀 모델 계수에 적용해보자!
+```{r}
+boot.fn = function(data,index){
+  return(coef(lm(mpg~horsepower,data=data,subset=index)))
+}
+boot.fn(Auto,1:392)
+```
+
+```{r}
+set.seed(1)
+boot.fn(Auto,sample(392,392,replace=T))
+boot.fn(Auto,sample(392,392,replace=T))
+```
+
+이렇게 여러번 돌리는 것을 boot 함수로 한번에 할 수 있다.
+
+```{r}
+boot(Auto,boot.fn,1000)
+```
+
