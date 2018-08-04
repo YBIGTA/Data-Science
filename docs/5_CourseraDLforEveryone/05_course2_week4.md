@@ -6,7 +6,9 @@ deep neural network가 무엇인지는 위의 그림을 통해 설명할 수 있
 ## Forward Propagation in a Deep Network
 deep neural network에서 forward propagation은 shallow neural network에서의 propagation과 매우 유사하다.
 다음의 신경망을 통해 $\hat{y}$를 구하는 과정을 알아보자.
+
 ![image](./week4/2.jpg)
+
 가장 먼저 $z^{[1]} = w^{[1]}x + b^{[1]}$를 구하고, 이를 활성함수에 적용하여 $a^{[1]}$를 구한다.
 다음은 이 출력값 $a^{[1]}$를 두 번째 레이어의 입력값으로 이용한다. 즉,
 $$ z^{[2]} = w^{[2]} * a^{[1]} + b^{[2]}\\
