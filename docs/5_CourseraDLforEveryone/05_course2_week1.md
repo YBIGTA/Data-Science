@@ -93,6 +93,7 @@ regularization이 과적합을 방지할 수 있는 이유는 람다를 이용�
 
 dropout regularizaion은 regularization의 한 종류로, 일정 확률로 임의의 unit을 학습에서 제외하는 방법이다.
 학습을 할 때에는 위의 그림에서와 같이 각 레이어에서 일정 확률로 임의의 unit을 제거하면서 학습을 진행하며, 제거되는 유닛은 매 학습 시마다 달라질 수 있다. unit을 제거하게 되면 해당 unit의 출력값이 다음 unit으로 전달되지 않게 되므로, 그만큼 신경망이 단순해질 것이다.
+하지만 역전파 알고리즘을 적용할 때는 dropout을 하지 않고 모든 unit을 활성화시킨 채로 학습을 시킨다.
 
 학습을 끝내고 신경망의 성능을 평가할 때에는 dropout을 하지 않고 전체 네트워크에 대해서 평가를 수행한다.
 
@@ -118,6 +119,7 @@ L2나 dropout 외에도 여러 정규화 방법이 존재하는데, 첫째로 Da
 
 가중치 w에 대해 random initialization을 수행할 때 초기에 w는 0에 가까운 작은 값으로 초기화되고, 반복 횟수가 많아질 수록 이 값은 점점 커지게 된다. 여기에서 early stopping은 dev set error > training error가 되는 지점까지만 학습을 시킴으로써 가중치 w를 적절한 크기로 조절하는 역할을 한다.
 하지만 early stopping에는 하나의 단점이 존재한다. 신경망 학습에 있어서 cost function을 최적화하는 것과 과적합을 방지하는 것은 별개의 작업이다. 하지만 early stopping을 이용한다면  dev set error > training error이 되는 지점에서 학습이 종료되기 때문에 cost function의 최적화가 불가능해진다. 하지만 L2 regularization이나 dropout과 달리 특별한 하이퍼파라미터를 필요로 하지 않기 때문에 결과를 보다 빨리 얻을 수 있다는 장점이 있다.
+-> 직교화 규칙을 어기기 때문. 왜 어기면 안될까여..ㅠㅠ 원하는 수치에 도달할 때 각 과정을 따로 할 수 없어서 정확한 모델링이 불가능.
 
 -----
 # Setting up your optimization problem

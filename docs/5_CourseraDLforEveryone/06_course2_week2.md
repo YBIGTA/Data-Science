@@ -1,20 +1,17 @@
 ## Mini-batch gradient descent
 mini-batch는 training set을 일정한 사이즈로 나누어 각각 학습시키는 알고리즘이다. 예를 들어 전체 데이터 크기가 500만개가 있을 때, 이들을 천 개 단위로 나누어 mini-batch를 만들 수 있다.
-이렇게 만들어진 mini-batch $X^{\{T\}}$,$Y^{\{T\}}$( T = 1 ~ 5000) 에 대해 같은 방식으로 학습을 진행한다. 하나의 mini-batch에 대해 이 과정을 수행하는 것을 1 epoch라고 부른다.
+이렇게 만들어진 mini-batch $X^{\{T\}}$,$Y^{\{T\}}$( T = 1 ~ 5000) 에 대해 같은 방식으로 학습을 진행한다.
 
 ## Understanding mini-batch gradient descent
 ![](./week2_image/1.jpg)
 
-위의 그림은 batch와 mini-batch의 cost가 감소하는 모습을 묘사한 것이다.
-
-고려해야 할 파라미터들
-mini-batch size : m -> batch gradient dscent, 1 -> stochastic gradient descent
+위의 그림은 batch와 mini-batch의 cost가 감소하는 모습을 표현한 것이다. 아래의 그림은 등고선을 통해서 어떻게 batch와 mini-batch가 최솟값을 탐색하는지를 나타낸 그림이다.
 
 ![](./week2_image/2.jpg)
 
-mini-batch size :
-m -> batch gradient dscent, 학습이 느려짐.
-1 -> stochastic gradient descent, vectorization의 이점이 사라짐
+파란색 선은 batch, 보라색 선이 mini-batch일 때의 상황을 나타낸다. 그림만 보았을 때에는 파란색 선이 보다 효율적인 것처럼 보이지만 batch의 경우 컴퓨터 메모리를 많이 잡아먹고, 또한 local minimum에 빠질 위험이 있다. 반면 mini-batch는 데이터 사이즈를 나눔으로써 이를 방지해준다.
+
+mini-batch에서 고려해야 할 하이퍼 파라미터로 mini-batch size가 있다. 이 값이 전체 데이터의 크기 m에 가까울수록 batch gradient dscent와 유사해지며 학습이 느려진다. 반면 1인 경우를 stochastic gradient descent라고 부르는데, 이 경우 vectorization의 이점이 사라지게 된다.
 
 따라서 둘의 중간값을 선택하는 것이 좋다. 첫째로 vectorization의 이점을 살릴 수 있고, 둘째로 전체 training set을 이용하지 않고도 모델의 발전 과정을 관측할 수 있다.
 그렇다면 적절한 중간값을 어떻게 선택할 수 있을까?
@@ -33,6 +30,7 @@ Exponentially weighted averages 혹은 Exponentially moving averages는 평균�
 
 위의 두 강의자료에서 볼 수 있듯 $\beta$ 값을 어떻게 두느냐에 따라서 어느 정도 과거의 데이터를 반영할 것인지를 결정할 수 있다.
 베타 값이 클수록 과거 데이터의 반영 비율이 높아진다(위 그래프의 연두색 선)
+$\beta$는 일반적으로 0.9나 0.98을 많이 사용한다. 0.9는 과거 10일 정도의 데이터, 0.98은 과거 50일 정도의 데이터를 반영한다고 한다.
 
 ## Understanding exponentially weighted averages
 
@@ -49,11 +47,14 @@ $$ \begin{matrix} v_{t} &=& \beta\,v_{t-1} + (1-\beta)\,\theta_{t}  \\
 
 ## Bias correction in exponentially weighted averages
 
+exponentially weighted averages는 맨 처음에 할 때는 bias가 크기 때문에 얘를 보정해주어야 한다.
+
 ![](./week2_image/5.jpg)
 
 ## Gradient descent with momentum
 
 momentum 알고리즘은 일반적인 gradient descent 알고리즘보다 빠른 학습이 가능한 알고리즘이다. 앞서 배웠던 exponentially moving averages를 gradient에 적용하여 학습시키는 방법이라고 할 수 있다.
+이전의 mini-batch에서 이전의 gradient와 지금의 gradient가 서로 달라져서 튀는 경우가 있는데, 이걸 방지해줌.
 
 ![](./week2_image/7.jpg)
 
