@@ -42,7 +42,7 @@ $$\text{bias}(\widehat{\theta}_m)=\mathbb{E}(\widehat{\theta}_m)-\theta$$
 - $\theta$ 는 데이터 생성 과정을 정의하는 참값을 의미한다.
 - $\mathbb{E}(\cdot)$ 는 기대값을 의미하는 표기이다.
 
-![bias variance](./images/DLB 5-1/bias variance.jpg)
+![bias variance](images/DLB 5-1/bias variance.jpg)
 
 
 #### Unbiasedness
@@ -67,7 +67,7 @@ $$\text{bias}(\widehat{\theta}_m)=\mathbb{E}(\widehat{\theta}_m)-\theta$$
 - **Bias** 는 실제 값으로부터 기대되는 편차(deviation)를 의미한다.
 - **Variance**는 서로 다른 데이터가 sampled 됐을 때, 모델 간에 발생할 수 있는 차이를 의미한다고 생각하면 된다.
 
-![Bias Variance trade off](./images/DLB 5-1/bias variance trade off.jpg)
+![Bias Variance trade off](images/DLB 5-1/bias variance trade off.jpg)
 
 #### Mean squared error
 
@@ -78,7 +78,7 @@ $$\begin{split} \text{MSE} & = \mathbb{E}[(\widehat{\theta}_m - \theta)^2]
 
 #### Underfitting and overfitting
 
-![Capcity to underfitting and overfitting](./images/DLB 5-1/capacity - underfitting overfitting.jpeg)
+![Capcity to underfitting and overfitting](images/DLB 5-1/capacity - underfitting overfitting.jpeg)
 
 모델의 capacity가 증가하게 되면, 모델의 복잡성이 커져 variance가 커지면서, 학습 데이터에 과적합되고, generalization error가 커지게 된다.
 반대로 작은 capacity에서는 모델이 데이터의 복잡성을 충분히 학습하지 못하여, bias가 커지는 underfitting이 일어나게 된다.
