@@ -272,7 +272,7 @@ subset.head() # tuple 형태로 바꾸기 전. v2에는 text, is_spam = 0 이면
 
 **2.2.2 train test split **
 
-#이 책은 train test split도 구현해놓았다..
+이 책은 train test split도 구현해놓았다..
 
 
 ```python
@@ -391,7 +391,7 @@ log 변환에 앞서, 본 책에서 p(spam) = p(~spam) = 0.5라고 가정하여 
 즉, 책에서는 $ p(c|x) = \frac{p(x|c)*p(c) } {p(x|c)* p(c) + p(x|~c)*p(~c)}$ 에서 p(c)=p(~c)=0.5 로 가정했기 때문에,
 
 $ p(c|x) = \frac{p(x|c)} {p(x|c)+p(x|~c)} $ 를 이용해 함수를 짰다. 
- 
+
 하지만 책과 다른 데이터를 구했으므로 p(c) 와 p(ㄱc)를 0.5라고 가정하기 어렵기에 p(c) 와 p(ㄱc)를 구하여  $ p(c|x) = \frac{p(x|c)*p(c) } {p(x|c)* p(c) + p(x|ㄱc)*p(ㄱc)}$ 를 계산한다. 
 
 ** p(c), p(~c) 구하기 **
