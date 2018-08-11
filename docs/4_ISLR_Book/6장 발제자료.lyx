@@ -1228,6 +1228,16 @@ plot(a,b,type='l',col='red',xlab='lambda',ylab='Test MSE')
 
 \begin_layout Plain Layout
 
+abline(v=a[which.min(b)],col='green')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(221,96000,'221')
+\end_layout
+
+\begin_layout Plain Layout
+
 @
 \end_layout
 
@@ -1247,7 +1257,7 @@ status open
 
 \begin_layout Plain Layout
 
-# 최소의 Test MSE를 갖는 람다로 전체 데이터를 적합시킨 후, 계수를 살펴보자
+# 최소의 CV error를 갖는 람다로 전체 데이터를 적합시킨 후, 계수를 살펴보자
 \end_layout
 
 \begin_layout Plain Layout
@@ -1336,6 +1346,80 @@ status open
 \begin_layout Plain Layout
 
 <<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# 과연 이때, test mse가 최소일까?
+\end_layout
+
+\begin_layout Plain Layout
+
+a = 1:400
+\end_layout
+
+\begin_layout Plain Layout
+
+b = rep(0,400)
+\end_layout
+
+\begin_layout Plain Layout
+
+for (i in a){
+\end_layout
+
+\begin_layout Plain Layout
+
+pred.las = predict(mod.las,s=i,newx=x[test,])
+\end_layout
+
+\begin_layout Plain Layout
+
+b[i] = mean((pred.las-y[test])^2)
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(a,b,type='l',col='red',xlab='lambda',ylab='Test MSE')
+\end_layout
+
+\begin_layout Plain Layout
+
+abline(v=a[which.min(b)],col='green')
+\end_layout
+
+\begin_layout Plain Layout
+
+text(4,94000,'4')
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# 최소의 CV error를 갖는 람다로 전체 데이터를 적합시킨 후, 계수를 살펴보자
 \end_layout
 
 \begin_layout Plain Layout
