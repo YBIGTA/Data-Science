@@ -1,4 +1,4 @@
-{:toc}
+# Logistic regression
 
 > (가독성과 재생산성을 모두 살리기 위해 맨 아래부분에 직접사용한 함수들을 모아놓았습니다. 코드를 실행하려면 맨아래 cell의 함수를 먼저 실행하고 위에서 부터 순서대로 실행하면 됩니다.)
 
@@ -484,6 +484,8 @@ plt.show()
 gradient 편미분 증명:https://stats.stackexchange.com/questions/278771/how-is-the-cost-function-from-logistic-regression-derivated
 로지스틱에 대한 andew ng강의정리:http://gnujoow.github.io/ml/2016/01/29/ML3-Logistic-Regression/)
 mle에 대하여:https://onlinecourses.science.psu.edu/stat414/node/191/)
+
+
 
 ```python
 from functools import partial
