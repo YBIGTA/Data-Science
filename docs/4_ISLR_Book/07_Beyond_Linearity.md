@@ -13,7 +13,7 @@
 
 다항식 회귀는 표준적 선형모델(식 1)을 다항식 함수(식 2)로 대체 하는 것.
 
-식 1) $ y_i = \beta_0 + \beta_1x_i + \epsilon_i $
+식 1) $ y_i = \beta_0 + \beta_1x_i + \epsilon_i $ <br>
 식 2) $ y_i = \beta_0 + \beta_1x_i + \beta_2x_i^2 + \beta_3x_i^3 + ... + \beta_dx_i^d + \epsilon_i $ 
 
 여기서 $ \epsilon $ 은 오차항이다. 충분히 큰 값의 d에 대해 다항식회귀는 극심하게 비선형적인 곡선을 만든다.
@@ -30,11 +30,11 @@
 
 식 3
 $$
-    C_0(X) = I(X < c_1)
-    C_1(X) = I(c_1 <= X < c_2)
-    C_2(X) = I(c_2 <= X < c_3)
-    ...
-    C_{K-1}(X) = I(c_{K-1} <= X < c_K)
+    C_0(X) = I(X < c_1)  <br>
+    C_1(X) = I(c_1 <= X < c_2) <br>
+    C_2(X) = I(c_2 <= X < c_3) <br>
+    ... <br>
+    C_{K-1}(X) = I(c_{K-1} <= X < c_K) <br>
     C_K(X) = I(c_K <= X)
 $$
 
