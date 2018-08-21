@@ -6,7 +6,7 @@ Jonathan Long, Evan Shelhamer, Trevor Darrell. "Fully Convolutional Networks for
 Using Dataset
 
 | Implementation | Accuracy | Weights | Memory | Conv Ops | etc | link |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 | Keras |   | FCN8: 427,127,544, FCN32 : 4,234,357,544 |  |   |  | [Keras](https://github.com/YBIGTA/DL_Models/tree/master/models/fcn/keras)   |
 | Tensorflow Slim |   | 256,445,037 | 256,445,037 * 4bytes |   |   | [Slim](https://github.com/YBIGTA/DL_Models/tree/master/models/fcn/tensorflow%20slim) |
 | Pytorch | 85.62% (Pixel-Acc) |  134,489,759 | 134,489,759 * 4bytes |  | W.I.P (Voc2012)| [Pytorch](https://github.com/YBIGTA/DL_Models/tree/master/models/fcn/pytorch)

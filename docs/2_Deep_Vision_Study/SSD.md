@@ -6,7 +6,7 @@ Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-
 Using Dataset
 
 | Implementation | Accuracy | Weights | Memory | Conv Ops | etc | Link |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 | Keras |   |   |  |   |    |   |
 | TensorFlow |   |   |  |   |   |   |
 | PyTorch |   |   | |   |   |   |
