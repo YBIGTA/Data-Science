@@ -1,18 +1,17 @@
-# Alexnet
-- ImageNet Classification with Deep Convolutional Neural Networks
+# ImageNet Classification with Deep Convolutional Neural Networks
 Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classification with deep convolutional neural networks." Advances in neural information processing systems. 2012.
 
-- Models
+## Models
 
 Using Dataset
 
-| Implementation | Accuracy | Weights | Memory | Conv Ops | etc |
+| Implementation | Accuracy | Weights | Memory | Conv Ops | etc | link |
 |---|---|---|---|---|---|
-| Keras |   |  35,659,688 | 35,659,688 * 4bytes |   |    |
-| Tensorflow |   | 62,377,088  | 62,377,088 * 4bytes |   |  [link](https://github.com/YBIGTA/DL_Models/blob/master/models/alexnet/tensorflow/Alexnet%20(Tensorflow).ipynb)  |
-| Pytorch | 90.1% (CIFAR 10, added BN) | 58,323,690  | 58,323,690 * 4bytes |   |[link](https://github.com/Jooong/DLCV/blob/master/classification/models.py#L71)|
+| Keras |   |  35,659,688 | 35,659,688 * 4bytes |   |  |   [link](https://github.com/YBIGTA/DL_Models/blob/master/models/alexnet/keras/Alexnet_keras.ipynb)  |
+| Tensorflow Slim |   | 62,378,344  | 62,378,344 * 4bytes |  |   | [link](https://github.com/YBIGTA/DL_Models/blob/master/models/alexnet/tensorflow%20slim/Alexnet%20(Slim).ipynb)  |
+| Pytorch | 90.1% (CIFAR 10, added BN) | 58,323,690  | 58,323,690 * 4bytes |  |   |[link](https://github.com/Jooong/DLCV/blob/master/classification/models.py#L71)|
 
-- Tip & Trick
+## Tip & Trick
 
 | name | for What | reference |
 |---|---|---|
@@ -23,5 +22,5 @@ Using Dataset
 | Color PCA augmentation | to avoid overfitting, data augmentation | - |
 
 
-- Error of paper
- : 224x224 is actually 227x227
+## Error of paper
+- 224x224 is actually 227x227

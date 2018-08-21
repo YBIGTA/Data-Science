@@ -1,4 +1,0 @@
-# Support Model
-
-- Alexnet
-- FCN
