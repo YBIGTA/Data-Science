@@ -2,11 +2,11 @@
 
 앞의 Years of Education과 Seniority를 통해 Income을 예측하는 두가지 예시 모델을 보자.
 
-![Alt Text](./1.PNG)
+![Alt Text](./image/1.PNG)
 
 ​                                                                                 *(그림 2.1)* 
 
-​                                        ![Alt Text](./2.PNG) 
+​                                        ![Alt Text](./image/2.PNG) 
 
 ​                                                                                 *(그림 2.2)*
 
@@ -18,7 +18,7 @@
 
 #### 모델의 유연성과 해석력에는 Trade - Off 관계가 있다!
 
-![Alt Text](./3.PNG)
+![Alt Text](./image/3.PNG)
 
 ​                    (그림 2.3) 몇 가지 method들에 대해 flexibility와 interpretability의 **Trade-Off** 관계
 
@@ -101,7 +101,7 @@ e.g. )
 
 회귀 설정에서, 가장 일반적으로 사용되는 척도는 MSE이다.
 
-![MSE](./4.PNG)
+![MSE](./image/4.PNG)
 
 여기서 ![\hat{f}(x_{i})](https://latex.codecogs.com/gif.latex?\hat{f}(x_{i})) 은 *i*번째 관측치의 예측값이다. 예측된 반응 값들이 실제 반응 값들과 가깝다면 MSE는 작아질 것.
 
@@ -123,7 +123,7 @@ e.g. 6개월 간의 주식 수익률을 바탕으로(training data) 주식 가�
 
 ![math](https://latex.codecogs.com/gif.latex?(x_{0},y_{0}))를 통계학습방법을 훈련시키는데 사용되지 않은, 사전에 본적이 없는 **test observation**이라고 한다면 ***test MSE***는 다음과 같이 정의할 수 있다.
 
-​                                                                   ![math](.\5.PNG)
+​                                                                   ![math](./image/5.PNG)
 
 우리는 결국 가장 낮은 *train MSE*가 아닌 **가장 낮은 *test MSE*를 제공하는 방법(모델)을 선택**하는 것이 목표이다. 
 
@@ -141,7 +141,7 @@ e.g. 6개월 간의 주식 수익률을 바탕으로(training data) 주식 가�
 - 가장 낮은 *train MSE* --> 가장 낮은 *test MSE* ? <font color = 'Red'> **보장이 없다!** </font>
 - 문제는 많은 통계학습방법들이 *train MSE*를 최소가 되도록 계수를 추정...
 
-![image](./6.PNG)
+![image](./image/6.PNG)
 
 > **검정색 True *f*의 예**
 
@@ -168,7 +168,7 @@ e.g. 6개월 간의 주식 수익률을 바탕으로(training data) 주식 가�
 
 우리는 expected test MSE를 ![math](https://latex.codecogs.com/gif.latex?E[y_{0}-\hat{f}(x_{0})]^{2})와 같이 정의할 수 있고, 이는 다음과 같이 나타낼 수 있다(고 한다).(증명?)
 
-![math](./7.PNG)
+![math](./image/7.PNG)
 
 - ![math](https://latex.codecogs.com/gif.latex?E[y_{0}-\hat{f}(x_{0})]^{2}) : test MSE의 기댓값(검정자료의 모든 가능한 ![math](https://latex.codecogs.com/gif.latex?x_{0})에 대해)
 - ![math](https://latex.codecogs.com/gif.latex?Var(\hat{f}(x_{0}))): ![math](https://latex.codecogs.com/gif.latex?\hat{f}(x_{0}))의 Variance(변동성)
@@ -202,21 +202,21 @@ e.g. 6개월 간의 주식 수익률을 바탕으로(training data) 주식 가�
 
 Case에 따른 그래프를 통해 알아보자
 
-![graph](./8.PNG)
+![graph](./image/8.PNG)
 
 > Case 1
 
 - flexibility가 증가할 때, 초기에 Bias가 급격히 감소 --> test MSE도 급격히 감소
 - 일정 지점 이후에 Variance에 의해 test MSE가 빠르게 증가
 
-![graph](./9.PNG)
+![graph](./image/9.PNG)
 
 > Case 2 : True *f*가 선형에 가까울 경우
 
 - flexibility가 증가함에 따라 편향의 감소(True *f*가 매우 선형적이기 때문)
 - test MSE는 flexibility이 증가할때 분산이 증가함에 따라 빠르게 증가한다.
 
-![graph](./10.PNG)
+![graph](./image/10.PNG)
 
 > Case 3 : True *f*가 아주 비선형적
 
@@ -236,7 +236,7 @@ Case에 따른 그래프를 통해 알아보자
 
 위 그래프와 아까 보았던 이 식,
 
-![math](./7.PNG)
+![math](./image/7.PNG)
 
 으로 알 수 있는 Variance, Bias, 그리고 test MSE의 관계를 <font color='Red'>**Trade-Off(절충)**</font>라고 한다.
 
@@ -255,7 +255,7 @@ True *f*를 모르는 실제 상황에서는 test MSE, Variance, Bias의 명시�
 
 train data ![(x_{1},y_{1}),(x_{1},y_{1}),...,(x_{n},y_{n})](https://latex.codecogs.com/gif.latex?(x_{1},y_{1}),(x_{1},y_{1}),...,(x_{n},y_{n}))을 기반으로 *f*를 추정한다고 했을 때(![math](https://latex.codecogs.com/gif.latex?y_{1},y_{2},...,y_{n})are qualitative) ![\hat{f}](https://latex.codecogs.com/gif.latex?\hat{f})의 정확도를 수량화 하는 가장 흔한기법은, 다음 식으로 나타내어지는 *training error rate*이다.
 
-![math](./11.PNG)
+![math](./image/11.PNG)
 
 - ![math](https://latex.codecogs.com/gif.latex?\hat{y}_{i}) : ![\hat{f}](https://latex.codecogs.com/gif.latex?\hat{f})을 사용하여 예측된 i번째 관측치에 대한 클래스 표시
 - ![\hat{f}](https://latex.codecogs.com/gif.latex?I)(*indicator variable*) : ![math](https://latex.codecogs.com/gif.latex?y_{i}\neq\hat{y}_{i})이면 1, ![math](https://latex.codecogs.com/gif.latex?y_{i}=\hat{y}_{i})이면 0
@@ -277,7 +277,7 @@ test error rate는 **"주어진 설명변수 값에 대해 가장 가능성이 �
 
 e.g. 0,1로 분류하는 2-class problem : ![image](https://latex.codecogs.com/gif.latex?Pr(Y=1\mid&space;X=x_{0})>0.5)면 클래스 1, 그렇지 않으면 클래스 0 예측
 
-![math](./13.PNG)
+![math](./image/13.PNG)
 
 - 오렌지영역은 X1 X2에 대해 ![image](https://latex.codecogs.com/gif.latex?Pr(Y=orange\mid&space;X=x))가 50%보다 큰 점들의 집합
 - 파랑영역은 50%보다 낮은 점들의 집합
@@ -290,7 +290,7 @@ Bayes error rate은 가능한 검정 오차율 중에서 가장 낮은 값이다
 
 X = ![image](https://latex.codecogs.com/gif.latex?x_{0})에서의 오차율은 ![image](https://latex.codecogs.com/gif.latex?1-max_{j}Pr(Y=j\mid&space;X=x_{0}))이고, 전체 베이즈 오차율은 다음과 같다.
 
-![math](./12.PNG)
+![math](./image/12.PNG)
 
 위의 예에서, Bayes error rate은 0.1304이다.(0보다 큰 이유는 실제 모집단에서는 클래스가 겹쳐져서(overlap) 일부 ![image](https://latex.codecogs.com/gif.latex?x_{0})에 대해 ![image](https://latex.codecogs.com/gif.latex?max_{j}Pr(Y=j\mid&space;X=x_{0})<1)이기 때문이다.???)
 
@@ -315,11 +315,11 @@ KNN은 3단게로 나눌 수 있다. 양의 정수 K와 검정 관측치 ![image
 1. train data에서 ![image](https://latex.codecogs.com/gif.latex?x_{0})에 가장 가까운 K개의 점(![image](https://latex.codecogs.com/gif.latex?N_{0})로 표시)을 식별
 2. 클래스 j에 대한 조건부 확률을 반응변수 값이 k인 ![image](https://latex.codecogs.com/gif.latex?N_{0})내 점들의 비율로 추정한다, 이렇게!
 
-![math](./14.PNG)
+![math](./image/14.PNG)
 
 3. 마지막으로 베이즈 분류기와 같은 규칙으로 확률이 가장 높은 클래스 j에 할당한다.
 
-![math](./15.PNG)
+![math](./image/15.PNG)
 
 위 그림은 KNN기법의 한 예로, K=3을 선택했을 경우이다.
 
@@ -327,7 +327,7 @@ KNN은 3단게로 나눌 수 있다. 양의 정수 K와 검정 관측치 ![image
 2. 3개의 점 내에서 오렌지색, 파랑색 점의 비율로 조건부확률 추정(이경우 1/3, 2/3)
 3. 확률이 더 높은 파랑색 점으로 X를 할당
 
-![math](./17.PNG)
+![math](./image/17.PNG)
 
 위의 두 사진은 K=1, K=100을 사용한 두가지 KNN적합이다.
 
@@ -341,7 +341,7 @@ KNN은 3단게로 나눌 수 있다. 양의 정수 K와 검정 관측치 ![image
 
 - decision boundary는 덜 유연해지고, 분산은 낮지만 편향은 높다.
 
-![math](./18.PNG)
+![math](./image/18.PNG)
 
 위 사진은 Train Error Rate과 Test Error Rate을 1/K의 함수이다.(그래프에 우측으로 갈수록 유연)
 
