@@ -355,4 +355,4 @@ Test Error Rate은 적절한 값에서 최소를 갖는 U자형의 그래프를 
 
 Variance와 Bias의 Trade-Off 관계와, test MSE(error rate)의 U자형 그래프를 항상 머릿속에 염두하자.
 
-5장에서 어떻게하면 최적의 flexibility를 추정할 수 있는지 더 공부해보자!
+5장에서 어떻게하면 최적의 flexibility를 추정할 수 있는지 더 공부해보자!.
