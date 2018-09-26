@@ -22,7 +22,7 @@ $$\hat{y}= \hat{\beta_0}+\hat{\beta_1}x_1+\hat{\beta_2}x_2+...+\hat{\beta_p}x_p$
 
 $$\hat{\beta_0},\hat{\beta_1},...,\hat{\beta_p}$$들은 잔차제곱합(RSS)를 최소화하도록 **최소제곱법**을 사용하여 결정됨
 
-![3-1](.\image\3-1.PNG)
+![3-1](./image/3-1.PNG)
 
 ![3-2](.\image\3-2.PNG)
 
