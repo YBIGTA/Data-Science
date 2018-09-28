@@ -11,30 +11,27 @@
 	- 합성곱 신경망(Convolutional Neural Networks, CNN)의 연산이 이미지 크기에 대한 고민을 해결. 
 
 ### 4.1.2. Edge Detection Example
-<center>![image](./c4week1/1.png)  
+![image](./c4week1/1.png){: .center}{: width="20" height="20"}   
 
  - 합성곱 연산은 합성곱 신경망(CNN)의 핵심 요소
  - 합성곱 연산의 방식: 필터(또는 커널) 행렬을 이미지의 왼쪽위에서부터 시작하여 오른쪽과 밑으로 옮겨가며 대응 요소끼리 곱한 것을 모두 더해주는 방식. 
 
-<center> ![image](./c4week1/2.png)  
-<center> ![image](./c4week1/2-2.png)
-<center> ![image](./c4week1/2-3.png)
-<center> ![image](./c4week1/2-4.png)     
-<center> *합성곱 연산 방식*   
+![image](./c4week1/2-0.png){: .center}    
+<center> [합성곱 연산 방식]    
 
  위 예시에서 6 X 6 pixel의 Grayscale 이미지가 있다고 하면, 별도의 RGB 채널이 없기 때문에 6 x 6 x 3 의 행렬이 아닌 6 x 6 x 1 의 행렬이 된다. 아래 예시에서는 3x3 크기의 행렬에 1 1 1 0 0 0 -1 -1 -1의 값을 차례로 넣은 필터를 사용했다.
   왼쪽의 행렬이 감지할 이미지이고, 가운데 있는 행렬이 필터, 그리고 오른쪽 이미지가 결과 이미지가 된다. 결과 이미지의 가운데 밝은 영역이 감지 대상 이미지의 가운데에 강한 경계선이 있다는 것을 알려준다.  
   
 ### 4.1.3.  More Edge Detection
   * 밝기 전환  
- <center> ![image](./c4week1/3.png)      
- <center>*밝기 전환*
+![image](./c4week1/3.png){: .center}      
  
  이미지를 뒤집어서 왼쪽이 어둡고 오른쪽이 밝을때 동일한 필터로 합성곱을 하면, 결과 이미지에서 30 대신 -30 의 값을 얻는다. 따라서 양과 음의 윤곽선의 차이 즉, 서로 다른 밝기의 전환을 확인할 수 있다. 두 종류의 차이가 중요하지 않다면, 결과 행렬에 절대값을 씌워줄 수 있다. 
 
-- 합성곱 필터의 종류 
-<center> ![image](./c4week1/4.png)  ![image](./c4week1/4-1.png)      ![image](./c4week1/4-2.png)     
-<center> *합성곱 필터의 종류* 
+- 합성곱 필터의 종류   
+
+![image](./c4week1/4.png){: .center}  ![image](./c4week1/4-1.png){: .center}      ![image](./c4week1/4-0.png){: .center} 
+<center> [합성곱 필터의 종류] 
 
  CNN에서는 합성곱 필터 행렬의 값들이 parameter가 된다. 필터 행렬의 숫자 요소들을 변수로 두고 데이터로부터 학습함으로써 신경망이 이미지 내에서 윤곽선같은 하위 단계의 속성을 학습할 수 있게 된다.   
  
@@ -50,10 +47,8 @@
 	
 * Padding 
 이미지 축소의 문제점을 해결하기 위해 이미지를 덧대어 입력값으로 넣어주는 변형 방식. 
-<center> ![image](./c4week1/5-1.png)  
-<center> ![image](./c4week1/5-2.png)  
-<center> ![image](./c4week1/5-3.png)  
-<center> *Padding*   
+![image](./c4week1/6-0.png){: .center}   
+<center> [Padding]   
 
 위 예시에서는 1 픽셀만큼 가장자리에 더해주었다. 그렇게 되면 기존의 6 x 6 이미지가 아닌 8 x 8 이미지가 되어 3 x 3 필터와 합성곱을 하면 6 x 6 이미지를 얻게 된다. 이 결과, 이미지는 기존의 크기와 동일한 효과를 갖는다. 또한, 가장자리의 정보를 모두 취할 순 없지만 버리는 양을 줄이게 된다. 
 
@@ -66,27 +61,30 @@
 	p = (f - 1) / 2
 	- 일반적으로 필터 크기 f x f 에서  f 는 3, 5, 7과 같은 홀수이다. f가 짝수이면 패딩이 비대칭이 되고, 홀수의 경우에는 중심 위치가 존재하기 때문에 필터의 위치 파악이 용이하다.  
 
+
 ### 4.1.5. Strided Convolutions
 - Stride
 	합성곱 필터 적용시 stride 값의 간격을 두어 칸을 옮기며 연산하는 것.
-	<center> ![image](./c4week1/8.png)  
-	<center> *Stride*   
+![image](./c4week1/8.png){: .center}   
+	<center> [Stride]   
 - 합성곱 결과 요약
-	<center> ![image](./c4week1/7.png)    
-	<center> *convolutions*    
+![image](./c4week1/7.png){: .center}    
+	<center> [convolutions]   
 	
-  분수값이 정수가 아닐 경우 내림 연산하여 필터가 밖으로 나온 경우 계산에 포함하지 않는다. 일반적으로는 필터가 패딩된 이미지에 맞도록 설정한다. 
+  분수값이 정수가 아닐 경우 내림 연산하여 필터가 밖으로 나온 경우 계산에 포함하지 않는다. 일반적으로는 필터가 패딩된 이미지에 맞도록 설정한다.  
+  
 - Cross correlation과 Convolution
 	일반적인 수학 교재에서 정의하는 Convolution은 가로축과 세로축으로 뒤집어 주는 mirroring 단계가 있다.  딥러닝 분야에서는 유용하지 않으므로 미러링 과정을 생략하여 코드를 단순화한다. 이것을 Cross correlation라고 해야 하지만, 관습적으로 Convolution이라 부른다. 
-	<center> ![image](./c4week1/9.png)
-	<center> *mirroring*        
+![image](./c4week1/9.png){: .center}
+	<center> [mirroring]]        
+
 
 ### 4.1.6. Convolutions Over Volume
 
 * RGB 이미지 3D 필터
 	* 너비x 높이x 채널의 수
 	* 이미지의 채널 수와 필터의 채널 수가 일치
-<center> ![image](./c4week1/10-2.png) 
+![image](./c4week1/10-2.png){: .center} 
  
 * RGB 필터
 	  - 빨간색의 윤곽선을 감지하는 필터       ![image](./c4week1/12.png)   
@@ -95,26 +93,26 @@
 * 다중 필터
 	 - 세로와 가로, 또는 45도 혹은 70도 기울어진 윤곽선을 모두 감지 
 	 - 검출하고자 하는 특성의 수 = 필터의 채널 수
-<center> ![image](./c4week1/14-4.png)
+![image](./c4week1/14-4.png){: .center}
 
 
 ### 4.1.7. One Layer of a Convolutional Network
 
 * 합성곱의 단일 층
- <center> ![image](./c4week1/14-5.png)
- <center> *Forward Propagation*  
-<center> ![image](./c4week1/14-6.png)  
-<center> *One convolutional Layer*  
+![image](./c4week1/14-5.png){: .center}
+ <center> [*Forward Propagation]  
+![image](./c4week1/14-6.png){: .center}  
+<center> [One convolutional Layer]  
   
-<center> ![image](./c4week1/15.png)
-<center> ![image](./c4week1/15-2.png)
+![image](./c4week1/15.png){: .center}
+![image](./c4week1/15-2.png){: .center}
 
 * notation 
-<center> ![image](./c4week1/15-3.png)
+![image](./c4week1/15-3.png){: .center}
 
 ### 4.1.8. Simple Convolutional Network Example
 - CovnNet Example
-<center> ![image](./c4week1/16.png)
+![image](./c4week1/16.png){: .center}  
 	- 신경망 깊이가 깊어질 수록 입력값의 높이와 너비가 줄어들고, 채널의 수는 늘어나는 경향 
 - types of layer in CNN
 	-Convolution (CONV)
@@ -122,9 +120,9 @@
 	-Fully Connected (FL) 
 		
 ### 4.1.9. Pooling Layers
--  Pooling Layers: 표현 크기를 줄임으로써 계산 속도와 특성 검출의 정확도 증가  
-<center> ![image](./c4week1/17.png)
-<center> ![image](./c4week1/17-2.png)  
+-  Pooling Layers: 표현 크기를 줄임으로써 계산 속도와 특성 검출의 정확도 증가     
+![image](./c4week1/17.png){: .center}  
+![image](./c4week1/17-2.png){: .center}   
 
 - hyper-parameters
 	-   filter size  (_f_) 
@@ -135,10 +133,10 @@
 
 ### 4.1.10. CNN Example
 
-<center> ![image](./c4week1/18.png)
+![image](./c4week1/18.png){: .center}  
 - 일반적으로 신경망의 층의 개수를 말할 때 가중치와 변수를 가지는 층을 말한다. Pooling layer는 가중치와 변수가 없고 하이퍼파라미터만 있기 때문에, CONV와 POOL을 하나의 층(Layer) 으로 묵는다.
 
-<center> ![image](./c4week1/18-2.png)
+![image](./c4week1/18-2.png){: .center}  
 
 
 ### 4.1.11. Why Convolutions?
