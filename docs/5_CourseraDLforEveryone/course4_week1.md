@@ -30,7 +30,6 @@
 - 합성곱 필터의 종류   
 
 ![image](./c4week1/4.png)         ![image](./c4week1/4-1.png)   
-![image](./c4week1/4-0.png)
 
  CNN에서는 합성곱 필터 행렬의 값들이 parameter가 된다. 필터 행렬의 숫자 요소들을 변수로 두고 데이터로부터 학습함으로써 신경망이 이미지 내에서 윤곽선같은 하위 단계의 속성을 학습할 수 있게 된다.   
  
@@ -99,18 +98,14 @@
 
 ### 4.1.7. One Layer of a Convolutional Network
 
-* Forward Propagation
+* Forward Propagation  
 ![image](./c4week1/14-5.png)
 
-* One Convolutional Layer
+* One Convolutional Layer  
 ![image](./c4week1/14-6.png)  
-<br>   
-![image](./c4week1/15.png)
-<br>
-![image](./c4week1/15-2.png)
+![image](./c4week1/15.png)  
+![image](./c4week1/15-2.png)  
 
-* notation 
-![image](./c4week1/15-3.png)
 
 ### 4.1.8. Simple Convolutional Network Example
 - CovnNet Example
