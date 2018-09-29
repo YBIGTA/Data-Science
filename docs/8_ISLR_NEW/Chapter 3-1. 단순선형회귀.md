@@ -10,8 +10,8 @@ $$
 \\Y ≈ \beta_0+ \beta_1 X\\
 $$
 
-- 기호 $≈$는 “근사적으로 모델링된”이라는 뜻이다.
-- $\beta_0$와 $\beta_1$는 계수(coefficient) 또는 파라미터(parameter)로, 각각 절편(intercept)과 기울기(slope)를 나타낸다.
+- 기호 ≈ 는 “근사적으로 모델링된”이라는 뜻이다.
+- \beta_0와 \beta_1는 계수(coefficient) 또는 파라미터(parameter)로, 각각 절편(intercept)과 기울기(slope)를 나타낸다.
 - 훈련 데이터를 사용하여 모델 계수에 대한 추정치를 구하면, 다음과 같이 Y의 값을 예측할 수 있다.
 
 $$
@@ -152,6 +152,7 @@ ___
   $$
   \\Cor(X, Y) =\frac { \sum _{ i=1 }^{ n }{ { ({ x }_{ i }-\bar { x }  }){ ({ y }_{ i }-\bar { y }  }) }  }{\sqrt { \sum _{ i=1 }^{ n }{ { ({ x }_{ i }-\bar { x }  })^{ 2 } }}{\sqrt { \sum _{ i=1 }^{ n }{ { ({ y }_{ i }-\bar { y }  })^{ 2 } }}}  } \\
   $$
+
 
 
 
