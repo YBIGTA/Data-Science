@@ -26,7 +26,7 @@ https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-
 
 예제를 보며 이해해보자.
 
-**1) 잠재변수란? **
+** 1) 잠재변수란? **
 
 지겨울 수도 있겠지만 동전 뒤집기로 생각해보자.
 
@@ -56,7 +56,7 @@ $\hat{\theta_B} $ = # of heads using coin B/ total # of flips using coin B
 
 
 
-**2) EM algorithm의 아이디어 **
+** 2) EM algorithm의 아이디어 **
 
 ![image](https://user-images.githubusercontent.com/32008883/48524564-18140780-e8c4-11e8-9c0f-857032d1f680.png)
 
@@ -114,7 +114,7 @@ v. 수렴할 때까지 앞의 과정을 반복한다.
 
 
 
-**3) EM alogrithm 의 의의 **
+** 3) EM alogrithm 의 의의 **
 
 incomplete data데이터가 불충분한 경우(hidden variable이 존재하는 경우) 파라미터 추정을 할 때 간단하고 robust하다. gradient descent와 Newton-Raphson도 비슷한 역할을 하지만 EM algorithm이 구현하기 쉬우며 robust하다.
 
