@@ -65,7 +65,7 @@
   - Subsampling 때문에 Spatial한 정보가 많이 줄어들어 정확한 예측이 안된다.
   - 그렇다고 Subsampling을 줄여도 잘 안된다.
 
-  --> Atrous Algorithm
+      --> Atrous Algorithm
 
 - Spatial Insensitivity
 
@@ -267,6 +267,6 @@ Shallow Net..?
 - GAP는 물체 전반(강아지 전반)을 잡는다, GMP는 단 하나의 구별되는 부분(강아지의 얼굴)을 찾는다.
 - 성능이 괜찮다
 
-- Positive Dataset으로 우리의 target이 많이 노출된 데이터를, Negative로 random한, 그냥 outdoor dataset을 이용해서 학습시키면, target이 어딨는지 학습시킬 수 있는 데이터 셋을 만들 수 있다.
+- Positive Dataset으로 우리의 target이 많이 노출된 데이터를, Negative로 random한, 그냥 outdoor dataset을 이용해서 학습시키면, target이 어딨는지 학습시킬 수 있는 모델(target detector)을 만들 수 있다.
 
 http://tmmse.xyz/2016/04/10/object-localization-with-weakly-supervised-learning/
